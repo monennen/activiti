@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>alarm</title>
+    <script src="../static/js/163-angular.min.js"></script>
+    <script src="../static/js/alarm.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+</head>
+<body>
+<h1>报警管理</h1>
+<p>
+    <a href="./user.html">
+        <button>user！</button>
+    </a>
+    <a href="./login.html">
+        <button>exit！</button>
+    </a>
+</p>
+<div ng-app="vacApp">
+    <div ng-controller="writeCtrl">
+        <h2>发起流程</h2>
+        <table border="0">
+            <tr>
+                <td>
+                    由于<input type="text" ng-model="reason"/>报警事件，需要向
+                </td>
+                <td>
+                    向<input type="text" ng-model="auditor"/>发起流程。
+                </td>
+                <td>
+                    <button ng-click="applyProcess()">发起</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-controller="myProcess">
+        <h2 ng-init="myProcess()">我发起中的流程</h2>
+        <table border="0">
+            <tr>
+                <td>时间</td>
+                <td>报警事件</td>
+                <td>当前状态</td>
+            </tr>
+            <tr ng-repeat="vac in vacList">
+                <td>{{vac.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vac.reason}}</td>
+                <td>{{vac.applyStatus}}</td>
+            </tr>
+        </table>
+    </div>
+    <div ng-controller="myApprove">
+        <h2 ng-init="myApprove()">待我审批的流程</h2>
+        <table border="0">
+            <tr>
+                <td>流程名称</td>
+                <td>发起时间</td>
+                <td>申请人</td>
+                <td>申请时间</td>
+                <td>报警事件</td>
+                <td>操作</td>
+            </tr>
+            <tr ng-repeat="vacTask in vacTaskList">
+                <td>{{vacTask.name}}</td>
+                <td>{{vacTask.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vacTask.alarm.applyUser}}</td>
+                <td>{{vacTask.alarm.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vacTask.alarm.reason}}</td>
+                <td>
+                    <button type="button" ng-click="passApprove(vacTask.id, 1)">同意处理</button>
+                    <button type="button" ng-click="passApprove(vacTask.id, 0)">不同意</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<div ng-controller="myHandle">
+        <h2 ng-init="myHandle()">待我处置的流程</h2>
+        <table border="0">
+            <tr>
+                <td>流程名称</td>
+                <td>发起时间</td>
+                <td>申请人</td>
+                <td>申请时间</td>
+                <td>报警事件</td>
+                <td>操作</td>
+            </tr>
+            <tr ng-repeat="vacTask in vacTaskList">
+                <td>{{vacTask.name}}</td>
+                <td>{{vacTask.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vacTask.vac.applyUser}}</td>
+                <td>{{vacTask.vac.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vacTask.vac.reason}}</td>
+                <td>
+                    <button type="button" ng-click="handleAlarm(vacTask.id, 1)">报警解除</button>
+                </td>
+            </tr>
+        </table>
+    </div>-->
+    <div ng-controller="allApprove">
+        <h2 ng-init="allApprove()">所有流程记录</h2>
+        <table border="0">
+            <tr>
+                <td>时间</td>
+                <td>申请人</td>
+                <td>id</td>
+                <td>事由</td>
+                <td>申请状态</td>
+                <td>审核人</td>
+                <td>审核结果</td>
+                <td>审核时间</td>
+            </tr>
+            <tr ng-repeat="vac in allRecordList">
+                <td>{{vac.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vac.applyUser}}</td>
+                <td>{{vac.processId}}</td>
+                <td>{{vac.reason}}</td>
+                <td>{{vac.applyStatus}}</td>
+                <td>{{vac.auditor}}</td>
+                <td>{{vac.result}}</td>
+                <td>{{vac.auditTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mo.activiti.mapper.UserMapper">
+
+    <select id="checkPassword" resultType="com.mo.activiti.entity.User">
+        SELECT t.* FROM user t
+        WHERE
+        t.userName = #{userName}
+        and t.password = #{password}
+    </select>
+
+    <select id="getAllUser" resultType="com.mo.activiti.entity.User">
+        SELECT t.* FROM user t
+    </select>
+
+    <select id="getAllGroup" resultType="com.mo.activiti.entity.UserGroup">
+        SELECT t.* FROM UserGroup t
+    </select>
+
+    <select id="getUserGroup" resultType="com.mo.activiti.entity.User">
+        SELECT t.* FROM user t
+        WHERE
+        t.groupId = #{groupId}
+    </select>
+
+</mapper>
