@@ -67,13 +67,13 @@
                 <td>{{vacTask.alarm.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{vacTask.alarm.reason}}</td>
                 <td>
-                    <button type="button" ng-click="passApprove(vacTask.id, 1)">同意处理</button>
-                    <button type="button" ng-click="passApprove(vacTask.id, 0)">不同意</button>
+                    <button type="button" ng-click="passApprove(vacTask.id, 1, vacTask.alarm.reason)">同意处理</button>
+                    <button type="button" ng-click="passApprove(vacTask.id, 0, vacTask.alarm.reason)">不同意</button>
                 </td>
             </tr>
         </table>
     </div>
-    <!--<div ng-controller="myHandle">
+    <div ng-controller="myHandle">
         <h2 ng-init="myHandle()">待我处置的流程</h2>
         <table border="0">
             <tr>
@@ -87,15 +87,15 @@
             <tr ng-repeat="vacTask in vacTaskList">
                 <td>{{vacTask.name}}</td>
                 <td>{{vacTask.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>{{vacTask.vac.applyUser}}</td>
-                <td>{{vacTask.vac.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>{{vacTask.vac.reason}}</td>
+                <td>{{vacTask.alarm.applyUser}}</td>
+                <td>{{vacTask.alarm.applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{vacTask.alarm.reason}}</td>
                 <td>
                     <button type="button" ng-click="handleAlarm(vacTask.id, 1)">报警解除</button>
                 </td>
             </tr>
         </table>
-    </div>-->
+    </div>
     <div ng-controller="allApprove">
         <h2 ng-init="allApprove()">所有流程记录</h2>
         <table border="0">

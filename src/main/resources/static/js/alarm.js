@@ -59,9 +59,44 @@ app.controller("myApprove", function ($scope, $http, $window) {
         })
     };
 
-    $scope.passApprove = function (taskId, result) {
+    $scope.passApprove = function (taskId, result, reason) {
         $http.post(
             "/alarm/passApprove",
+            {
+                "id" : taskId,
+                "alarm" : {
+                    "auditor" : "cc",
+                    "result" : result,
+                    "reason" : reason
+//                    "result" : result >= 1 ? "审核通过" : "审核拒绝"
+                }
+            }
+        ).then(function (response) {
+            if (response.data == true) {
+                alert("操作成功！");
+                $window.location.reload();
+            } else {
+                alert("操作失败！");
+            }
+        })
+    }
+});
+
+
+app.controller("myHandle", function ($scope, $http, $window) {
+    $scope.vacTaskList = [];
+
+    $scope.myHandle = function () {
+        $http.get(
+            "/alarm/myHandle"
+        ).then(function (response) {
+            $scope.vacTaskList = response.data;
+        })
+    };
+
+    $scope.handleAlarm = function (taskId, result) {
+        $http.post(
+            "/alarm/handleAlarm",
             {
                 "id" : taskId,
                 "alarm" : {
@@ -80,6 +115,7 @@ app.controller("myApprove", function ($scope, $http, $window) {
         })
     }
 });
+
 
 /*app.controller('myAuditRecord', function ($scope, $http) {
 
