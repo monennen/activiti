@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1515296568080" name="" targetNamespace="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <process id="alarmProcess" isClosed="false" isExecutable="true" name="报警流程" processType="None">
-    <startEvent id="startevent1" name="Start"/>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:executionListener class="com.mo.activiti.controller.MyProcessEngineLifecycleListener" event="start"/>
+      </extensionElements>
+    </startEvent>
     <userTask activiti:candidateGroups="empGroup" activiti:exclusive="true" id="usertask1" name="发起流程"/>
     <userTask activiti:candidateGroups="manageGroup" activiti:candidateUsers="#{auditor}" activiti:exclusive="true" id="usertask3" name="故障处理"/>
     <endEvent id="endevent1" name="End"/>

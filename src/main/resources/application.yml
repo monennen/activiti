@@ -10,8 +10,8 @@ spring:
 #    password: hy123456
 #    url: jdbc:mysql://localhost:3506/workflow?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
     username: root
-    password: rootroot
-    url: jdbc:mysql://localhost:3306/activiti?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    password: root
+    url: jdbc:mysql://localhost:3506/activiti?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   druid:
